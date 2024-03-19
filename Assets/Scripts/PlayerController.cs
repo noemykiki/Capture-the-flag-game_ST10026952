@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public Transform flagHolder;
     private GameObject blueFlag;
     private Vector3 flagOffset = new Vector3(0f, 1f, 0f); // Adjust this offset as needed
+   
+
 
     private bool isCarryingFlag = false;
 
@@ -42,11 +44,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+   
     // ReSharper disable Unity.PerformanceAnalysis
     void DropFlag()
     {
-        blueFlag.GetComponent<Rigidbody>().isKinematic = false;
+        blueFlag.GetComponent<Rigidbody>().isKinematic = false; 
+        blueFlag.GetComponent<Rigidbody>().useGravity = true; 
         blueFlag.transform.SetParent(null);
         isCarryingFlag = false;
+        
+        
     }
+    
+   
 }
