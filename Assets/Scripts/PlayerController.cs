@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI; 
 using TMPro;
 
@@ -10,7 +12,8 @@ public class PlayerController : MonoBehaviour
     private GameObject blueFlag;
     private Vector3 flagOffset = new Vector3(0f, 1f, 0f); // Adjust this offset as needed
     public GameObject winUI;
-    private GameObject bluePodium; 
+    private GameObject bluePodium;
+    private bool isOnBluePodium = false;
     
    
 
@@ -37,10 +40,19 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject == bluePodium && isCarryingFlag)
         {
             winUI.gameObject.SetActive(true);
+            isOnBluePodium = true;
+           
         }
     }
-    
-    
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == bluePodium)
+        {
+            isOnBluePodium = false;
+        }
+    }
+
 
     void Update()
     {
@@ -55,6 +67,15 @@ public class PlayerController : MonoBehaviour
         {
             DropFlag();
         }*/
+
+        if (isOnBluePodium == true)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                // Restart the scene
+                SceneManager.LoadScene("SampleScene");
+            }
+        }
     }
 
    
