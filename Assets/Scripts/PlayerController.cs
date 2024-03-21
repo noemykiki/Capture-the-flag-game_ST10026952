@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 {
     public Transform flagHolder;
     private GameObject blueFlag;
+    private GameObject redFlag;
     private Vector3 flagOffset = new Vector3(0f, 1f, 0f); // Adjust this offset as needed
     public GameObject winUI;
     private GameObject bluePodium;
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         blueFlag = GameObject.FindGameObjectWithTag("BlueFlag");
+        redFlag = GameObject.FindGameObjectWithTag("RedFlag");
         bluePodium = GameObject.FindGameObjectWithTag("BluePodium");
     }
 
@@ -41,6 +43,8 @@ public class PlayerController : MonoBehaviour
         {
             winUI.gameObject.SetActive(true);
             isOnBluePodium = true;
+            blueFlag.SetActive(false);
+            redFlag.SetActive(false);
            
         }
     }
