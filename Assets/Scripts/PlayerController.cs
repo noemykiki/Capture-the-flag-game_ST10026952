@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,24 +7,25 @@ public class PlayerController : MonoBehaviour
     public Transform flagHolder;
     private GameObject blueFlag;
     private Vector3 flagOffset = new Vector3(0f, 1f, 0f); // Adjust this offset as needed
-    private Collider flagCollider;
+   
+
+
     private bool isCarryingFlag = false;
 
     void Start()
     {
         blueFlag = GameObject.FindGameObjectWithTag("BlueFlag");
-        flagCollider = blueFlag.GetComponent<Collider>();
-        flagCollider.isTrigger = true; // Initially enable trigger
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == blueFlag && !isCarryingFlag && other.CompareTag("Player"))
+        if (other.gameObject == blueFlag && !isCarryingFlag)
         {
+            // Pick up the flag
+            //blueFlag.GetComponent<Rigidbody>().isKinematic = true;
             blueFlag.transform.SetParent(flagHolder);
             blueFlag.transform.localPosition = Vector3.zero; // Set local position to (0, 0, 0)
             isCarryingFlag = true;
-            flagCollider.isTrigger = false; // Disable trigger when picked up
         }
     }
 
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         if (isCarryingFlag)
         {
             // Update flag position relative to the flag holder
-            blueFlag.transform.localPosition = flagOffset; // Adjust position relative to the flag holder
+            blueFlag.transform.position = flagHolder.position + flagOffset;
         }
 
         // Example: Drop the flag when the player presses "F" key
@@ -44,23 +44,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+   
+    // ReSharper disable Unity.PerformanceAnalysis
     void DropFlag()
     {
-        Rigidbody flagRigidbody = blueFlag.GetComponent<Rigidbody>();
-        flagRigidbody.isKinematic = false;
-        flagRigidbody.useGravity = true;
+        blueFlag.GetComponent<Rigidbody>().isKinematic = false; 
+        blueFlag.GetComponent<Rigidbody>().useGravity = true; 
         blueFlag.transform.SetParent(null);
         isCarryingFlag = false;
         StartCoroutine(ToggleTriggerOffForOneSecond());
+        
     }
-
+    
+    // ReSharper disable Unity.PerformanceAnalysis
     IEnumerator ToggleTriggerOffForOneSecond()
     {
-        flagCollider.isTrigger = false; // Turn off trigger
+        blueFlag.GetComponent<Collider>().isTrigger = false; // Turn off trigger 
 
         yield return new WaitForSeconds(1f); // Wait for 1 second
+        
+        blueFlag.GetComponent<Collider>().isTrigger = true; //turn on trigger 
 
-        flagCollider.isTrigger = true; // Turn on trigger
+       
     }
    
 }

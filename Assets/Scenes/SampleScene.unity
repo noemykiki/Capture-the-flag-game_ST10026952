@@ -516,10 +516,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4720168162678092576, guid: 4e1dac2c3b4fd4845be84e07591689ce, type: 3}
-      propertyPath: m_TagString
-      value: Ground
-      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4e1dac2c3b4fd4845be84e07591689ce, type: 3}
       propertyPath: m_Name
       value: Arena Model
@@ -809,7 +805,7 @@ GameObject:
   - component: {fileID: 995070577}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
