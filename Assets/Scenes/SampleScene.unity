@@ -270,7 +270,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -366,6 +366,10 @@ PrefabInstance:
     - target: {fileID: 6237178857247117023, guid: 64d9c745e6d596b4491e302aec0d9833, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.004794419
+      objectReference: {fileID: 0}
+    - target: {fileID: 6951558075635130981, guid: 64d9c745e6d596b4491e302aec0d9833, type: 3}
+      propertyPath: m_TagString
+      value: Red Flag
       objectReference: {fileID: 0}
     - target: {fileID: 7540475745031831358, guid: 64d9c745e6d596b4491e302aec0d9833, type: 3}
       propertyPath: m_LocalPosition.x

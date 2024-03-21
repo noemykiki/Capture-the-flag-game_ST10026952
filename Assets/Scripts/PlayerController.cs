@@ -38,10 +38,10 @@ public class PlayerController : MonoBehaviour
         }
 
         // Example: Drop the flag when the player presses "F" key
-        if (isCarryingFlag && Input.GetKeyDown(KeyCode.F))
+        /*if (isCarryingFlag && Input.GetKeyDown(KeyCode.F))
         {
             DropFlag();
-        }
+        }*/
     }
 
    
