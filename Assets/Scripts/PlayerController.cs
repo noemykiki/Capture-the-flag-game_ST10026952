@@ -52,9 +52,20 @@ public class PlayerController : MonoBehaviour
         blueFlag.GetComponent<Rigidbody>().useGravity = true; 
         blueFlag.transform.SetParent(null);
         isCarryingFlag = false;
-        
+        StartCoroutine(ToggleTriggerOffForOneSecond());
         
     }
     
+    // ReSharper disable Unity.PerformanceAnalysis
+    IEnumerator ToggleTriggerOffForOneSecond()
+    {
+        blueFlag.GetComponent<Collider>().isTrigger = false; // Turn off trigger 
+
+        yield return new WaitForSeconds(1f); // Wait for 1 second
+        
+        blueFlag.GetComponent<Collider>().isTrigger = true; //turn on trigger 
+
+       
+    }
    
 }
