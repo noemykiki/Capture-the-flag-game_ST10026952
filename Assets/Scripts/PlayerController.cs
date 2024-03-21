@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; 
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     public Transform flagHolder;
     private GameObject blueFlag;
     private Vector3 flagOffset = new Vector3(0f, 1f, 0f); // Adjust this offset as needed
+    public GameObject winUI;
+    private GameObject bluePodium; 
     
    
 
@@ -16,6 +20,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         blueFlag = GameObject.FindGameObjectWithTag("BlueFlag");
+        bluePodium = GameObject.FindGameObjectWithTag("BluePodium");
     }
 
     void OnTriggerEnter(Collider other)
@@ -28,7 +33,14 @@ public class PlayerController : MonoBehaviour
             blueFlag.transform.localPosition = Vector3.zero; // Set local position to (0, 0, 0)
             isCarryingFlag = true;
         }
+
+        if (other.gameObject == bluePodium && isCarryingFlag)
+        {
+            winUI.gameObject.SetActive(true);
+        }
     }
+    
+    
 
     void Update()
     {

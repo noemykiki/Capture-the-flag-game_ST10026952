@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BlueFlag
   - Red Flag
+  - BluePodium
   layers:
   - Default
   - TransparentFX

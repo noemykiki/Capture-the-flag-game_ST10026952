@@ -323,7 +323,7 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
@@ -352,10 +352,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &247582561
 GameObject:
@@ -810,6 +810,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5694509790633292602, guid: 4e1dac2c3b4fd4845be84e07591689ce, type: 3}
+      propertyPath: m_TagString
+      value: BluePodium
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4e1dac2c3b4fd4845be84e07591689ce, type: 3}
       propertyPath: m_Name
       value: Arena Model
@@ -1253,6 +1257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flagHolder: {fileID: 1266306079}
+  winUI: {fileID: 247582561}
 --- !u!1 &1266306078
 GameObject:
   m_ObjectHideFlags: 0
