@@ -557,7 +557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6951558075635130981, guid: 64d9c745e6d596b4491e302aec0d9833, type: 3}
       propertyPath: m_TagString
-      value: Red Flag
+      value: RedFlag
       objectReference: {fileID: 0}
     - target: {fileID: 7540475745031831358, guid: 64d9c745e6d596b4491e302aec0d9833, type: 3}
       propertyPath: m_LocalPosition.x
