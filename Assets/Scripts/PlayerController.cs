@@ -9,18 +9,17 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     public Transform flagHolder;
-    private GameObject blueFlag;
-    private GameObject redFlag;
-    private Vector3 flagOffset = new Vector3(-2f, 0f, 0f); // Adjust this offset as needed
     public GameObject winUI;
-    private GameObject bluePodium;
-    private bool isOnBluePodium = false;
     
-   
-
-
     private bool isCarryingFlag = false;
     private bool isCarryingEnemyFlag = false;
+    private bool isOnBluePodium = false;
+    private GameObject blueFlag;
+    private GameObject redFlag;
+    private GameObject bluePodium;
+    private Vector3 flagOffset = new Vector3(-2f, 0f, 0f); // Adjust this offset as needed
+  
+   
 
     void Start()
     {
