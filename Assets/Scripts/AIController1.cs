@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
+    public float moveSpeed = 5f; // Speed of the AI movement
     public string flagTag = "RedFlag"; // Tag of the flag the AI is searching for
 
     private GameObject targetFlag; // Reference to the target flag GameObject
-    private UnityEngine.AI.NavMeshAgent agent; // Reference to the NavMeshAgent component
 
     void Start()
     {
@@ -17,21 +17,21 @@ public class AIController : MonoBehaviour
         {
             Debug.LogError("No GameObject found with tag " + flagTag);
         }
-
-        // Get reference to the NavMeshAgent component
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        if (agent == null)
-        {
-            Debug.LogError("No NavMeshAgent component found on the AI GameObject");
-        }
     }
 
     void Update()
     {
         if (targetFlag != null)
         {
-            // Set the destination of the NavMeshAgent to the target flag's position
-            agent.SetDestination(targetFlag.transform.position);
+            // Calculate the direction to the target flag
+            Vector3 direction = targetFlag.transform.position - transform.position;
+            direction.y = 0; // Ensure the AI moves only along the XZ plane
+
+            // Normalize the direction to maintain constant speed
+            direction.Normalize();
+
+            // Move the AI towards the target flag
+            transform.Translate(direction * (moveSpeed * Time.deltaTime));
         }
     }
 }
