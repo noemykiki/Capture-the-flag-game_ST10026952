@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 {
     public Transform flagHolder;
     public GameObject winUI;
+   
     
     private bool isCarryingFlag = false;
     private bool isCarryingEnemyFlag = false;
@@ -18,21 +19,29 @@ public class PlayerController : MonoBehaviour
     private GameObject redFlag;
     private GameObject bluePodium;
     private Vector3 flagOffset = new Vector3(-2f, 0f, 0f); // Adjust this offset as needed
-    public TMP_Text blueScoreText; // UI Text to display the player's score 
-    public TMP_Text redScoreText; // UI Text to display the AI's score 
 
-    private int blueScore = 0; // Score of the player 
-    private int redScore = 0; // Score of the AI
-    private int maxRounds = 5; //Maximum number of rounds 
-    private int currentRound = 1; // Current round number 
-  
+
+
    
+
+   
+    private int redScore = 0;
+
+    private void Awake()
+    {
+        
+        
+    }
 
     void Start()
     {
         blueFlag = GameObject.FindGameObjectWithTag("BlueFlag");
         redFlag = GameObject.FindGameObjectWithTag("RedFlag");
         bluePodium = GameObject.FindGameObjectWithTag("BluePodium");
+
+       
+       
+        
     }
 
     void OnTriggerEnter(Collider other)
@@ -58,8 +67,12 @@ public class PlayerController : MonoBehaviour
         {
             winUI.gameObject.SetActive(true);
             isOnBluePodium = true;
-            
-           
+
+            StartCoroutine(NewRound());
+
+
+
+
         }
     }
 
@@ -124,5 +137,28 @@ public class PlayerController : MonoBehaviour
 
        
     }
+
+  
+
    
+
+    void EndGame()
+    {
+        Debug.Log("Game is Over");
+    }
+
+    
+
+    // ReSharper disable Unity.PerformanceAnalysis
+    IEnumerator NewRound()
+    {
+        yield return new WaitForSeconds(1f); // Wait for 1 second
+        
+        winUI.gameObject.SetActive(false);
+        
+        SceneManager.LoadScene("SampleScene");
+        
+      
+    }
+
 }

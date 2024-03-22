@@ -13,13 +13,14 @@ public class AIController : MonoBehaviour
     private NavMeshAgent agent;
     private GameObject redFlagObject;
     public Transform enemyFlagHolder;
-    public Transform redPodium; 
-    public GameObject redScoreUI;
+    public Transform redPodium;
     public GameObject redPodiumObject; 
 
     private bool isCarryingFlag = false;
     private bool isOnRedPodium = false;
     private Vector3 flagOffset = new Vector3(0f, 1f, 0f); // Adjust this offset as needed
+    
+  
 
     private GameObject targetFlag; // Reference to the target flag GameObject
 
@@ -50,10 +51,9 @@ public class AIController : MonoBehaviour
         {
             isOnRedPodium = true;
             Debug.Log("Red wins");
-            redScoreUI.gameObject.SetActive(true);
-            
-            
            
+
+
         }
     }
     
