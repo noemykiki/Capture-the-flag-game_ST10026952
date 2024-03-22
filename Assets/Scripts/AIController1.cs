@@ -54,13 +54,15 @@ public class AIController : MonoBehaviour
     void Update()
     {
         if (isCarryingFlag)
-        {
+        { 
+            // 3. return to base 
             // Update flag position relative to the flag holder
             redFlag.transform.position = enemyFlagHolder.position + flagOffset;
             agent.destination = redPodium.position;
         }
         if (targetFlag != null && isCarryingFlag == false)
         {
+            //2. search flag
             agent.destination = redFlag.position;
 
         }
