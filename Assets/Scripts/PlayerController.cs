@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 {
     public Transform flagHolder;
     public GameObject winUI;
+    public TMP_Text winText;
+    
    
     
     private bool isCarryingFlag = false;
@@ -19,13 +21,8 @@ public class PlayerController : MonoBehaviour
     private GameObject redFlag;
     private GameObject bluePodium;
     private Vector3 flagOffset = new Vector3(-2f, 0f, 0f); // Adjust this offset as needed
-
-
-
-   
-
-   
-    private int redScore = 0;
+    
+    
 
     private void Awake()
     {
