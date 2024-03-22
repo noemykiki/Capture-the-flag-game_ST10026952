@@ -18,6 +18,13 @@ public class PlayerController : MonoBehaviour
     private GameObject redFlag;
     private GameObject bluePodium;
     private Vector3 flagOffset = new Vector3(-2f, 0f, 0f); // Adjust this offset as needed
+    public TMP_Text blueScoreText; // UI Text to display the player's score 
+    public TMP_Text redScoreText; // UI Text to display the AI's score 
+
+    private int blueScore = 0; // Score of the player 
+    private int redScore = 0; // Score of the AI
+    private int maxRounds = 5; //Maximum number of rounds 
+    private int currentRound = 1; // Current round number 
   
    
 
