@@ -8,6 +8,8 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    
+    public PlayerController Instance { get; private set; }
     public Transform flagHolder;
     public GameObject winUI;
     public TMP_Text winText;
@@ -24,20 +26,25 @@ public class PlayerController : MonoBehaviour
     
     
 
-    private void Awake()
-    {
-        
-        
-    }
-
     void Start()
     {
         blueFlag = GameObject.FindGameObjectWithTag("BlueFlag");
         redFlag = GameObject.FindGameObjectWithTag("RedFlag");
         bluePodium = GameObject.FindGameObjectWithTag("BluePodium");
 
-       
-       
+        winText.text = "";
+        UpdateScoreUI();
+
+
+
+
+    }
+    
+    void UpdateScoreUI()
+    {
+        
+//        DataManager.Instance.blueScoreText.text = DataManager.Instance.blueScore.ToString();
+//        DataManager.Instance.redScoreText.text = DataManager.Instance.redScore.ToString();
         
     }
 
@@ -62,8 +69,11 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject == bluePodium && isCarryingFlag)
         {
+            DataManager.Instance.blueScore++; 
             winUI.gameObject.SetActive(true);
             isOnBluePodium = true;
+            UpdateScoreUI();
+            DataManager.Instance.currentRound++;
 
             StartCoroutine(NewRound());
 
@@ -94,12 +104,7 @@ public class PlayerController : MonoBehaviour
         {
             redFlag.transform.position = flagHolder.position + flagOffset;
         }
-
-        // Example: Drop the flag when the player presses "F" key
-        /*if (isCarryingFlag && Input.GetKeyDown(KeyCode.F))
-        {
-            DropFlag();
-        }*/
+        
 
         if (isOnBluePodium == true)
         {
@@ -131,13 +136,9 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1f); // Wait for 1 second
         
         blueFlag.GetComponent<Collider>().isTrigger = true; //turn on trigger 
-
-       
+        
     }
-
-  
-
-   
+    
 
     void EndGame()
     {
@@ -157,5 +158,8 @@ public class PlayerController : MonoBehaviour
         
       
     }
+    
+   
+
 
 }

@@ -31,5 +31,8 @@ public class DataManager : MonoBehaviour
       {
          Destroy(this.GameObject());
       }
+      
    }
+
+  
 }

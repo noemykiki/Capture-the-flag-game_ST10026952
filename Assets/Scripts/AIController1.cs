@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using TMPro; 
+using UnityEngine.SceneManagement;
 
 public class AIController : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class AIController : MonoBehaviour
     private GameObject redFlagObject;
     public Transform enemyFlagHolder;
     public Transform redPodium;
-    public GameObject redPodiumObject; 
+    public GameObject redPodiumObject;
+    public GameObject winUI; 
 
     private bool isCarryingFlag = false;
     private bool isOnRedPodium = false;
@@ -50,7 +52,13 @@ public class AIController : MonoBehaviour
         if (other.gameObject == redPodiumObject && isCarryingFlag)
         {
             isOnRedPodium = true;
+            DataManager.Instance.redScore++; 
             Debug.Log("Red wins");
+            DataManager.Instance.currentRound++;
+            winUI.gameObject.SetActive(true); 
+            
+            StartCoroutine(NewRound());
+            
            
 
 
@@ -80,5 +88,16 @@ public class AIController : MonoBehaviour
             agent.destination = redFlag.position;
 
         }
+    }
+    
+    IEnumerator NewRound()
+    {
+        yield return new WaitForSeconds(1f); // Wait for 1 second
+        
+        winUI.gameObject.SetActive(false);
+        
+        SceneManager.LoadScene("SampleScene");
+        
+      
     }
 }
