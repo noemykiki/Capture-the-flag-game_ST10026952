@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using TMPro; 
 
 public class AIController : MonoBehaviour
 {
@@ -12,8 +14,11 @@ public class AIController : MonoBehaviour
     private GameObject redFlagObject;
     public Transform enemyFlagHolder;
     public Transform redPodium; 
+    public GameObject redScoreUI;
+    public GameObject redPodiumObject; 
 
     private bool isCarryingFlag = false;
+    private bool isOnRedPodium = false;
     private Vector3 flagOffset = new Vector3(0f, 1f, 0f); // Adjust this offset as needed
 
     private GameObject targetFlag; // Reference to the target flag GameObject
@@ -35,20 +40,29 @@ public class AIController : MonoBehaviour
         if (other.gameObject == redFlagObject && !isCarryingFlag)
         {
             // Pick up the flag
-            //blueFlag.GetComponent<Rigidbody>().isKinematic = true;
+           
             redFlagObject.transform.SetParent(enemyFlagHolder);
             redFlagObject.transform.localPosition = Vector3.zero; // Set local position to (0, 0, 0)
             isCarryingFlag = true;
         }
 
-        /**if (other.gameObject == bluePodium && isCarryingFlag)
+        if (other.gameObject == redPodiumObject && isCarryingFlag)
         {
-            winUI.gameObject.SetActive(true);
-            isOnBluePodium = true;
-            blueFlag.SetActive(false);
-            redFlag.SetActive(false);
+            isOnRedPodium = true;
+            Debug.Log("Red wins");
+            redScoreUI.gameObject.SetActive(true);
+            
+            
            
-        }**/
+        }
+    }
+    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == redPodium)
+        {
+            isOnRedPodium = false;
+        }
     }
 
     void Update()

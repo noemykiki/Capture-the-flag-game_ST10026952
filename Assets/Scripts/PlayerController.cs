@@ -52,8 +52,7 @@ public class PlayerController : MonoBehaviour
         {
             winUI.gameObject.SetActive(true);
             isOnBluePodium = true;
-            blueFlag.SetActive(false);
-            redFlag.SetActive(false);
+            
            
         }
     }
@@ -88,11 +87,11 @@ public class PlayerController : MonoBehaviour
 
         if (isOnBluePodium == true)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+          /**  if (Input.GetKeyDown(KeyCode.R))
             {
                 // Restart the scene
                 SceneManager.LoadScene("SampleScene");
-            }
+            } **/
         }
     }
 
