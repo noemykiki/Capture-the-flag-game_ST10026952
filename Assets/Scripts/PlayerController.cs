@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public Transform flagHolder;
     private GameObject blueFlag;
     private GameObject redFlag;
-    private Vector3 flagOffset = new Vector3(0f, 1f, 0f); // Adjust this offset as needed
+    private Vector3 flagOffset = new Vector3(-2f, 0f, 0f); // Adjust this offset as needed
     public GameObject winUI;
     private GameObject bluePodium;
     private bool isOnBluePodium = false;
@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
 
     private bool isCarryingFlag = false;
+    private bool isCarryingEnemyFlag = false;
 
     void Start()
     {
@@ -30,13 +31,21 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == blueFlag && !isCarryingFlag)
+        if (other.gameObject == blueFlag && !isCarryingFlag && !isCarryingEnemyFlag)
         {
             // Pick up the flag
             //blueFlag.GetComponent<Rigidbody>().isKinematic = true;
             blueFlag.transform.SetParent(flagHolder);
             blueFlag.transform.localPosition = Vector3.zero; // Set local position to (0, 0, 0)
             isCarryingFlag = true;
+        }
+
+        if (other.gameObject == redFlag && !isCarryingFlag && !isCarryingEnemyFlag)
+        {
+            //Pick up enemy flag
+            redFlag.transform.SetParent(flagHolder);
+            redFlag.transform.localPosition = Vector3.zero;
+            isCarryingEnemyFlag = true;
         }
 
         if (other.gameObject == bluePodium && isCarryingFlag)
@@ -63,7 +72,12 @@ public class PlayerController : MonoBehaviour
         if (isCarryingFlag)
         {
             // Update flag position relative to the flag holder
-            blueFlag.transform.position = flagHolder.position + flagOffset;
+            blueFlag.transform.position = flagHolder.position;
+        }
+
+        if (isCarryingEnemyFlag)
+        {
+            redFlag.transform.position = flagHolder.position + flagOffset;
         }
 
         // Example: Drop the flag when the player presses "F" key
