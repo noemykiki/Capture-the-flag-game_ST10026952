@@ -56,7 +56,7 @@ public class AIController : MonoBehaviour
         {
             isOnRedPodium = true;
             DataManager.Instance.redScore++; 
-            Debug.Log("Red wins");
+            Debug.Log("Red Scores");
             DataManager.Instance.currentRound++;
             winUI.gameObject.SetActive(true);
             bluePodium.GetComponent<Collider>().enabled = false; 

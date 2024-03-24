@@ -14,6 +14,9 @@ public class DataManager : MonoBehaviour
 
    public TMP_Text blueScoreText;
    public TMP_Text redScoreText;
+   public GameObject endMenu;
+   public GameObject blueWin;
+   public GameObject redWin;
 
    public int blueScore = 0;
    public int redScore = 0;
@@ -32,6 +35,29 @@ public class DataManager : MonoBehaviour
          Destroy(this.GameObject());
       }
       
+   }
+
+   public void Update()
+   {
+      if (blueScore == 5 || redScore == 5)
+      {
+         Debug.Log("game is over");
+         endMenu.gameObject.SetActive(true);
+         Time.timeScale = 0f;
+
+         if (blueScore >= maxRounds)
+         {
+            
+            Debug.Log("blue wins");
+            blueWin.gameObject.SetActive(true);
+         }
+         else if (redScore >= maxRounds)
+         {
+           
+            Debug.Log("red wins");
+            redWin.gameObject.SetActive(true);
+         }
+      }
    }
 
   
