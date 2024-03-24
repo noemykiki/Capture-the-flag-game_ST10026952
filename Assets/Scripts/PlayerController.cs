@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public Transform flagHolder;
     public GameObject winUI;
     public TMP_Text winText;
+    public GameObject menu; 
 
 
 
@@ -23,7 +24,8 @@ public class PlayerController : MonoBehaviour
     private GameObject redFlag;
     private GameObject bluePodium;
     private Vector3 flagOffset = new Vector3(-2f, 0f, 0f); // Adjust this offset as needed
-    private GameObject redPodium; 
+    private GameObject redPodium;
+    
     
 
     void Start()
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
         redFlag = GameObject.FindGameObjectWithTag("RedFlag");
         bluePodium = GameObject.FindGameObjectWithTag("BluePodium");
         redPodium = GameObject.FindGameObjectWithTag("RedPodium");
+       
 
         winText.text = "";
         UpdateScoreUI();
@@ -94,7 +97,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+   
     void Update()
     {
         if (isCarryingFlag)
@@ -116,6 +119,12 @@ public class PlayerController : MonoBehaviour
                 // Restart the scene
                 SceneManager.LoadScene("SampleScene");
             } **/
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            menu.gameObject.SetActive(true);
+            TogglePause();
         }
     }
 
@@ -159,10 +168,26 @@ public class PlayerController : MonoBehaviour
         
         SceneManager.LoadScene("SampleScene");
         
-      
     }
     
-    
+
+    public void Resume()
+    {
+        Time.timeScale = 1f; 
+        menu.gameObject.SetActive(false);
+        Debug.Log("Game Resumed");
+    }
+
+    public void Exit()
+    {
+        Application.Quit(); // quits the game
+        Debug.Log("Game Exited");
+    }
+
+    void TogglePause()
+    {
+        Time.timeScale = 0f;
+    }
     
    
 
