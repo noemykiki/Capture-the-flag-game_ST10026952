@@ -21,6 +21,7 @@ public class AIController : MonoBehaviour
     private bool isCarryingFlag = false;
     private bool isOnRedPodium = false;
     private Vector3 flagOffset = new Vector3(0f, 1f, 0f); // Adjust this offset as needed
+    private GameObject bluePodium;
     
   
 
@@ -36,6 +37,8 @@ public class AIController : MonoBehaviour
         {
             Debug.LogError("No GameObject found with tag " + flagTag);
         }
+
+        bluePodium = GameObject.FindGameObjectWithTag("BluePodium");
     }
     
     void OnTriggerEnter(Collider other)
@@ -55,7 +58,8 @@ public class AIController : MonoBehaviour
             DataManager.Instance.redScore++; 
             Debug.Log("Red wins");
             DataManager.Instance.currentRound++;
-            winUI.gameObject.SetActive(true); 
+            winUI.gameObject.SetActive(true);
+            bluePodium.GetComponent<Collider>().enabled = false; 
             
             StartCoroutine(NewRound());
             

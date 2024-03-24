@@ -13,9 +13,9 @@ public class PlayerController : MonoBehaviour
     public Transform flagHolder;
     public GameObject winUI;
     public TMP_Text winText;
-    
-   
-    
+
+
+
     private bool isCarryingFlag = false;
     private bool isCarryingEnemyFlag = false;
     private bool isOnBluePodium = false;
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private GameObject redFlag;
     private GameObject bluePodium;
     private Vector3 flagOffset = new Vector3(-2f, 0f, 0f); // Adjust this offset as needed
-    
+    private GameObject redPodium; 
     
 
     void Start()
@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
         blueFlag = GameObject.FindGameObjectWithTag("BlueFlag");
         redFlag = GameObject.FindGameObjectWithTag("RedFlag");
         bluePodium = GameObject.FindGameObjectWithTag("BluePodium");
+        redPodium = GameObject.FindGameObjectWithTag("RedPodium");
 
         winText.text = "";
         UpdateScoreUI();
@@ -43,8 +44,8 @@ public class PlayerController : MonoBehaviour
     void UpdateScoreUI()
     {
         
-//        DataManager.Instance.blueScoreText.text = DataManager.Instance.blueScore.ToString();
-//        DataManager.Instance.redScoreText.text = DataManager.Instance.redScore.ToString();
+        DataManager.Instance.blueScoreText.text = DataManager.Instance.blueScore.ToString();
+        DataManager.Instance.redScoreText.text = DataManager.Instance.redScore.ToString();
         
     }
 
@@ -74,6 +75,8 @@ public class PlayerController : MonoBehaviour
             isOnBluePodium = true;
             UpdateScoreUI();
             DataManager.Instance.currentRound++;
+            redPodium.GetComponent<Collider>().enabled = false;
+            
 
             StartCoroutine(NewRound());
 
@@ -158,6 +161,8 @@ public class PlayerController : MonoBehaviour
         
       
     }
+    
+    
     
    
 

@@ -8,6 +8,8 @@ TagManager:
   - BluePodium
   - RedFlag
   - Enemy
+  - BlueScore
+  - RedScore
   layers:
   - Default
   - TransparentFX
